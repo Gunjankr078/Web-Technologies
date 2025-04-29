@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Resume | Smart Resume Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+    <div class="snake-animation" id="snake-animation"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="snake-icon">🐍</span>
+                <h1>Snake Resume</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#upload">Upload</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Resume Analysis <br><span>Made Simple</span></h1>
+                    <p>Upload CSV-formatted resumes and let our AI-powered Snake algorithm analyze and match them to your job requirements.</p>
+                    <button class="btn primary-btn" onclick="scrollToUpload()">Get Started</button>
+                </div>
+                <div class="hero-image">
+                    <img src="/api/placeholder/500/300" alt="Snake Resume Illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Snake Resume?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>CSV Friendly</h3>
+                    <p>Easily process batch resume data stored in CSV format with our specialized parser.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Analysis</h3>
+                    <p>Our AI-powered engine extracts key information and provides intelligent insights.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Process hundreds of resumes in seconds with our optimized processing engine.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Detailed Reports</h3>
+                    <p>Get comprehensive analytics with skill matching, experience verification, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <h2 class="section-title">Upload Your CSV Resume</h2>
+            <div class="upload-container">
+                <div class="upload-area" id="drop-area">
+                    <form id="upload-form" enctype="multipart/form-data">
+                        <input type="file" id="fileElem" name="resumeFile" accept=".csv" onchange="handleFiles(this.files)">
+                        <label class="upload-label" for="fileElem">
+                            <div class="upload-icon">📁</div>
+                            <p>Drag & drop your CSV file or <span>browse</span></p>
+                            <p class="upload-hint">Maximum file size: 5MB</p>
+                        </label>
+                    </form>
+                </div>
+                <div id="file-info" class="file-info"></div>
+                <div id="upload-actions" class="upload-actions" style="display: none;">
+                    <div class="job-requirements">
+                        <h3>Specify Job Requirements</h3>
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title</label>
+                            <input type="text" id="jobTitle" placeholder="e.g. Frontend Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="requiredSkills">Required Skills (comma separated)</label>
+                            <input type="text" id="requiredSkills" placeholder="e.g. JavaScript, React, CSS">
+                        </div>
+                        <div class="form-group">
+                            <label for="experienceYears">Minimum Experience (years)</label>
+                            <input type="number" id="experienceYears" min="0" max="20" value="2">
+                        </div>
+                    </div>
+                    <button id="analyze-btn" class="btn primary-btn">Analyze Resume</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="results-section" class="results-section" style="display: none;">
+        <div class="container">
+            <div class="results-header">
+                <h2>Analysis Results</h2>
+                <button id="close-results" class="btn close-btn">×</button>
+            </div>
+            <div class="results-container">
+                <div class="processing-indicator">
+                    <div class="snake-loader"></div>
+                    <p>Processing your resume data...</p>
+                </div>
+                <div id="results-content" style="display: none;">
+                    <!-- Results will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Snake Resume</h2>
+            <div class="about-content">
+                <p>Snake Resume is a cutting-edge resume analysis tool designed specifically for processing CSV-formatted resume data. Our platform uses advanced NLP (Natural Language Processing) algorithms to extract, analyze, and match candidate information to your job requirements.</p>
+                <p>Founded in 2025, our mission is to simplify the recruitment process and help companies find the best talent efficiently.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="snake-icon">🐍</span>
+                    <h2>Snake Resume</h2>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#upload">Upload</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@snakeresume.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Snake Resume. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
